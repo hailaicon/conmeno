@@ -24,6 +24,8 @@ public class RandomFunctionCaller_X : MonoBehaviour
     private float timeLeft;
     private bool isPlayer1Turn = true;
 
+    public AudioSource atkSound;
+
     private bool hasActedThisTurn = false;
 
     public static bool hasTriggeredWinCondition = false;
@@ -37,39 +39,48 @@ public class RandomFunctionCaller_X : MonoBehaviour
         mau_canh = 2;
     }
 
+    public void CallAudio()
+    {
+        atkSound.Play();
+    }
+
+
 
     public void Function1()
     {
-        // Hàm 1: Thực hiện tác vụ gì đó
+        CallAudio();
         cuopanim.SetTrigger("da");
+        
     }
 
     public void Function2()
     {
-        // Hàm 2: Thực hiện tác vụ gì đó
+        
         cuopanim.SetTrigger("dam");
+        CallAudio();
     }
 
     public void Function3()
     {
-        // Hàm 3: Thực hiện tác vụ gì đó
+        
         cuopanim.SetTrigger("spin");
+        CallAudio();
     }
 
     public void Function4()
     {
-        // Hàm 4: Thực hiện tác vụ gì đó
+        
         cuopanim.SetTrigger("hit");
     }
 
     public void Function5()
     {
-        // Hàm 4: Thực hiện tác vụ gì đó
+        
         cuopanim.SetTrigger("die");
     }
     public void Function6()
     {
-        // Hàm 4: Thực hiện tác vụ gì đó
+        
         cuopanim.SetTrigger("win");
     }
 
@@ -93,7 +104,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(hasActedThisTurn);
+        //Debug.Log(hasActedThisTurn);
         TurnBase();
 
         if (isPlayer1Turn)
@@ -116,9 +127,10 @@ public class RandomFunctionCaller_X : MonoBehaviour
 
     public void PlayerAction()
     {
-        Debug.Log("goi player action");
+        //Debug.Log("goi player action");
         if(Input.GetKeyDown(KeyCode.Q))
         {
+            CallAudio();
             canhanim.SetTrigger("kick");
             Function4();
             Invoke("CuopMatMau", 2f);
@@ -127,6 +139,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             canhanim.SetTrigger("punch");
+            CallAudio();
             Function4();
             Invoke("CuopMatMau", 2f);
             hasActedThisTurn = true;
@@ -134,6 +147,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             canhanim.SetTrigger("spin");
+            Invoke("CallAudio()", 2f);
             Invoke("Function4", 2f);
             Invoke("CuopMatMau", 2f);
             hasActedThisTurn = true;
@@ -185,6 +199,8 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 break;
             case 1:
                 Function2();
+                canhanim.SetTrigger("hit");
+                canhanim.SetTrigger("hit");
                 canhanim.SetTrigger("hit");
                 hasActedThisTurn = true;
                 mau_canh = mau_canh - 1;
