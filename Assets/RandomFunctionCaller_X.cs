@@ -147,7 +147,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             canhanim.SetTrigger("spin");
-            Invoke("CallAudio()", 2f);
+            Invoke("CallAudio()", 1.5f);
             Invoke("Function4", 2f);
             Invoke("CuopMatMau", 2f);
             hasActedThisTurn = true;
