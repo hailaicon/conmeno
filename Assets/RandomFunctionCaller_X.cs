@@ -2,11 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class RandomFunctionCaller_X : MonoBehaviour
 {
     public Animator cuopanim;
     public Animator canhanim;
+
+    // mau
+    public Slider cuop_mau_sl;
+    public Slider canh_mau_sl;
+    public int mau_cuop;
+    public int mau_canh;
 
     public GameObject player1;
     public GameObject player2;
@@ -19,11 +26,15 @@ public class RandomFunctionCaller_X : MonoBehaviour
 
     private bool hasActedThisTurn = false;
 
+    public static bool hasTriggeredWinCondition = false;
+
     void Start()
     {
         timeLeft = turnTime;
         currentTurnText.text = "YOUR_TURN";
         hasActedThisTurn = false;
+        mau_cuop = 2;
+        mau_canh = 2;
     }
 
 
@@ -62,6 +73,24 @@ public class RandomFunctionCaller_X : MonoBehaviour
         cuopanim.SetTrigger("win");
     }
 
+    private void FixedUpdate()
+    {
+        if (mau_cuop == 0 && !hasTriggeredWinCondition)
+        {
+            cuopanim.SetTrigger("die");
+            GameObject cuop = GameObject.FindWithTag("cuop");
+            Destroy(cuop, 2f);
+            TatTextGoiCutScene();
+            StartCoroutine(Win());
+            hasTriggeredWinCondition = true;
+        }
+    }
+
+    IEnumerator Win()
+    {
+        yield return new WaitForSeconds(3f);
+        canhanim.SetTrigger("win");
+    }
     void Update()
     {
         Debug.Log(hasActedThisTurn);
@@ -81,6 +110,8 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 RandomAttack();
             }
         }
+
+           
     }
 
     public void PlayerAction()
@@ -89,20 +120,37 @@ public class RandomFunctionCaller_X : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             canhanim.SetTrigger("kick");
+            Function4();
+            Invoke("CuopMatMau", 2f);
             hasActedThisTurn = true;
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             canhanim.SetTrigger("punch");
+            Function4();
+            Invoke("CuopMatMau", 2f);
             hasActedThisTurn = true;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             canhanim.SetTrigger("spin");
+            Invoke("Function4", 2f);
+            Invoke("CuopMatMau", 2f);
             hasActedThisTurn = true;
         }
         //hasActedThisTurn = true;
     }
+
+    // goi cútcene
+    public void TatTextGoiCutScene()
+    {
+        timerText.enabled = false;
+        currentTurnText.enabled = false;
+    }    
+    public void CuopMatMau()
+    {
+        mau_cuop = mau_cuop - 1;
+    }    
 
     public void TurnBase()
     {
@@ -131,15 +179,21 @@ public class RandomFunctionCaller_X : MonoBehaviour
         {
             case 0:
                 Function1();
+                canhanim.SetTrigger("hit");
                 hasActedThisTurn = true;
+                mau_canh = mau_canh - 1;
                 break;
             case 1:
                 Function2();
+                canhanim.SetTrigger("hit");
                 hasActedThisTurn = true;
+                mau_canh = mau_canh - 1;
                 break;
             case 2:
                 Function3();
+                canhanim.SetTrigger("hit");
                 hasActedThisTurn = true;
+                mau_canh = mau_canh - 1;
                 break;
         }
 
