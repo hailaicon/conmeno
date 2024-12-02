@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4453080062567865957}
   - component: {fileID: 5412872724040118793}
   - component: {fileID: 288050766732096201}
+  - component: {fileID: 6147470264409454007}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Ground
@@ -61,8 +62,8 @@ Transform:
   m_GameObject: {fileID: 6939335236907087710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 148.1052}
-  m_LocalScale: {x: 1, y: 1, z: 30.622406}
+  m_LocalPosition: {x: 0, y: 0, z: 4.56}
+  m_LocalScale: {x: 1, y: 1, z: 1.9124795}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 648260494349496464}
@@ -159,8 +160,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.047562, y: 14.260169, z: 0.047809526}
-  m_Center: {x: 0.42377663, y: 5.8518596, z: 3.134169}
+  m_Size: {x: 18.047562, y: 14.260169, z: 9.355477}
+  m_Center: {x: 0.42377663, y: 5.8518596, z: -1.5197103}
 --- !u!114 &288050766732096201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +176,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 6939335236907087710}
   spawngd: {fileID: 648260494349496464}
+--- !u!114 &6147470264409454007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939335236907087710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f93b5d151a2f754a922a858501b7f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 4560861803602427937, guid: 81f86570f78f2e146b33ae6b36845ffe, type: 3}
+  spawnInterval: 5
+  spawnDistance: 30
+  despawnDistance: 5
