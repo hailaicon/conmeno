@@ -5,6 +5,8 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     private bool jump;
+    public GameObject really;
+    public int speed = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +16,9 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Destroy(really, 4f);
         //tiến về phía trước.
-        transform.Translate(Vector3.forward * 5f * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         //nhấn đẻ qua trái và qua phải theo horizontal.
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
