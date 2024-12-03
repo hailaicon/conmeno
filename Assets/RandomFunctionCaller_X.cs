@@ -35,8 +35,8 @@ public class RandomFunctionCaller_X : MonoBehaviour
         timeLeft = turnTime;
         currentTurnText.text = "YOUR_TURN";
         hasActedThisTurn = false;
-        mau_cuop = 2;
-        mau_canh = 2;
+        mau_cuop = 3;
+        mau_canh = 3;
     }
 
     public void CallAudio()
