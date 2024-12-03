@@ -34,7 +34,7 @@ public class ObstacleSpawner : MonoBehaviour
         float spawnX = Random.Range(-5f, 5f);
         GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
-        GameObject spawnedObstacle = Instantiate(obstaclePrefab, new Vector3(spawnX, 0, spawnZ), Quaternion.identity);
+        GameObject spawnedObstacle = Instantiate(obstaclePrefab, new Vector3(spawnX, 1, spawnZ), Quaternion.identity);
 
         // Thêm vật cản vào danh sách quản lý
         spawnedObstacles.Add(spawnedObstacle);
