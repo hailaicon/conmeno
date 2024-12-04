@@ -25,13 +25,8 @@ public class timersetspeed : MonoBehaviour
         }
         else if(timer > 50f && timer < 100f && !tang)
         {
-            p1.speed += 5;
+            p1.speed += 6;
             tang = true;
-        }
-        else if(timer > 100f && timer < 200f && tang)
-        {
-            p1.speed += 10;
-            tang = false;
         }
     }
 }
