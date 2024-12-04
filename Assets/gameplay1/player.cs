@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
     private bool jump;
     public GameObject really;
     public int speed = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class player : MonoBehaviour
         if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jump)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.up * 5f,ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 6.5f,ForceMode.Impulse);
         }
     }
 
@@ -51,6 +53,14 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             jump = false;
+        }
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("vatcan"))
+        {
+            Debug.Log("Nhan vat da thua");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
