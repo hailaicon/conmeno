@@ -26,8 +26,8 @@ public class enemyenergy : MonoBehaviour
     IEnumerator manathief()
     {
         while(mana <= 100)
-        {
-            yield return new WaitForSeconds(1f);
+        {   
+            yield return new WaitForSeconds(0.5f);
             mana -= 1;
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class RandomFunctionCaller_X : MonoBehaviour
 {
@@ -127,6 +128,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 Debug.Log("mana cuop: " + mana_cuop);
             }
         }
+<<<<<<< Updated upstream:Assets/gameplay2/RandomFunctionCaller_X.cs
 
         if(mana_canh == 0)
         {
@@ -144,6 +146,10 @@ public class RandomFunctionCaller_X : MonoBehaviour
         yield return new WaitForSeconds(21f);
         mana = mana + 1;
 
+=======
+        
+           
+>>>>>>> Stashed changes:Assets/RandomFunctionCaller_X.cs
     }
 
     public void PlayerAction()
@@ -240,5 +246,19 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 break;
         }
 
-    }    
+    }
+
+    /*public void deafeat()
+    {
+        if (mau_canh == 0)
+        {
+            Debug.Log("bi danh bai");
+            SceneManager.LoadScene()
+        }
+        if (mau_cuop == 0)
+        {
+            Debug.Log("chien thang");
+            SceneManager.LoadScene(0);
+        }
+    }*/
 }
