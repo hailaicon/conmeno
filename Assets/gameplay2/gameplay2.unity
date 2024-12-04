@@ -250,8 +250,10 @@ MonoBehaviour:
   canhanim: {fileID: 683292067}
   cuop_mau_sl: {fileID: 0}
   canh_mau_sl: {fileID: 0}
-  mau_cuop: 0
-  mau_canh: 0
+  mau_cuop: 3
+  mau_canh: 3
+  mana_cuop: 1
+  mana_canh: 10
   player1: {fileID: 683292065}
   player2: {fileID: 1986032473}
   timerText: {fileID: 1048477453}
@@ -780,6 +782,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: cuop
       objectReference: {fileID: 0}
+    - target: {fileID: 4392664994978581302, guid: b29734c0b641bdb4d9854088b6a01de2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 52e38918fbd1ed44f962dfa1247780cc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1082,6 +1088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: canhsat_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 4613363413389786068, guid: c4a0c7af4691a7f428315076fad0adc7, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 52e38918fbd1ed44f962dfa1247780cc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
