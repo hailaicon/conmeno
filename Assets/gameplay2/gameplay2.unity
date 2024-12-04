@@ -250,8 +250,10 @@ MonoBehaviour:
   canhanim: {fileID: 683292067}
   cuop_mau_sl: {fileID: 0}
   canh_mau_sl: {fileID: 0}
-  mau_cuop: 0
-  mau_canh: 0
+  mau_cuop: 3
+  mau_canh: 3
+  mana_cuop: 1
+  mana_canh: 10
   player1: {fileID: 683292065}
   player2: {fileID: 1986032473}
   timerText: {fileID: 1048477453}

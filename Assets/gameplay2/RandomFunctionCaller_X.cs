@@ -14,6 +14,8 @@ public class RandomFunctionCaller_X : MonoBehaviour
     public Slider canh_mau_sl;
     public int mau_cuop;
     public int mau_canh;
+    public int mana_cuop;
+    public int mana_canh;
 
     public GameObject player1;
     public GameObject player2;
@@ -35,8 +37,10 @@ public class RandomFunctionCaller_X : MonoBehaviour
         timeLeft = turnTime;
         currentTurnText.text = "YOUR_TURN";
         hasActedThisTurn = false;
-        mau_cuop = 3;
-        mau_canh = 3;
+        //mau_cuop = 3;
+        //mau_canh = 3;
+        //mana_cuop = 1;
+        //mana_canh = 10;
     }
 
     public void CallAudio()
@@ -109,20 +113,37 @@ public class RandomFunctionCaller_X : MonoBehaviour
 
         if (isPlayer1Turn)
         {
-            if (!hasActedThisTurn)
+            if (!hasActedThisTurn && mana_canh > 0)
             {
                 PlayerAction();
+                Debug.Log("mana canh: " + mana_canh);
             }
         }
         else
         {
-            if (!hasActedThisTurn)
+            if (!hasActedThisTurn && mana_cuop > 0)
             {
                 RandomAttack();
+                Debug.Log("mana cuop: " + mana_cuop);
             }
         }
 
-           
+        if(mana_canh == 0)
+        {
+            HoiMana(mana_canh);
+        }
+        if (mana_cuop == 0)
+        {
+            HoiMana(mana_cuop);
+        }
+
+    }
+
+    public IEnumerator HoiMana(int mana)
+    {
+        yield return new WaitForSeconds(21f);
+        mana = mana + 1;
+
     }
 
     public void PlayerAction()
@@ -134,6 +155,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             canhanim.SetTrigger("kick");
             Function4();
             Invoke("CuopMatMau", 2f);
+            mana_canh = mana_canh - 1;
             hasActedThisTurn = true;
         }
         if (Input.GetKeyDown(KeyCode.W))
@@ -142,6 +164,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             CallAudio();
             Function4();
             Invoke("CuopMatMau", 2f);
+            mana_canh = mana_canh - 1;
             hasActedThisTurn = true;
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -150,6 +173,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             Invoke("CallAudio()", 1.5f);
             Invoke("Function4", 2f);
             Invoke("CuopMatMau", 2f);
+            mana_canh = mana_canh - 1;
             hasActedThisTurn = true;
         }
         //hasActedThisTurn = true;
@@ -196,12 +220,14 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 canhanim.SetTrigger("hit");
                 hasActedThisTurn = true;
                 mau_canh = mau_canh - 1;
+                mana_cuop = mana_cuop - 2;
                 break;
             case 1:
                 Function2();
                 canhanim.SetTrigger("hit");
                 canhanim.SetTrigger("hit");
                 canhanim.SetTrigger("hit");
+                mana_cuop = mana_cuop - 1;
                 hasActedThisTurn = true;
                 mau_canh = mau_canh - 1;
                 break;
@@ -210,6 +236,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 canhanim.SetTrigger("hit");
                 hasActedThisTurn = true;
                 mau_canh = mau_canh - 1;
+                mana_cuop = mana_cuop - 3;
                 break;
         }
 
