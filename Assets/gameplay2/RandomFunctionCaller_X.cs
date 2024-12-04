@@ -128,7 +128,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 Debug.Log("mana cuop: " + mana_cuop);
             }
         }
-<<<<<<< Updated upstream:Assets/gameplay2/RandomFunctionCaller_X.cs
+
 
         if(mana_canh == 0)
         {
@@ -146,10 +146,10 @@ public class RandomFunctionCaller_X : MonoBehaviour
         yield return new WaitForSeconds(21f);
         mana = mana + 1;
 
-=======
+
         
            
->>>>>>> Stashed changes:Assets/RandomFunctionCaller_X.cs
+
     }
 
     public void PlayerAction()
