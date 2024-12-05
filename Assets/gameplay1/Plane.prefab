@@ -281,8 +281,6 @@ MonoBehaviour:
   obstaclePrefabs:
   - {fileID: 2477804754763238582, guid: d9aea6b9a03221345a04e7cdcdad6c78, type: 3}
   - {fileID: 8393855164103260738, guid: 536888b4ab2cb524c8ac557ad9517bca, type: 3}
-  - {fileID: 919132149155446097, guid: 928641f028a095b43ab71a1d28718175, type: 3}
-  - {fileID: 919132149155446097, guid: ad3bb2ed8283933448d1a348a5b14358, type: 3}
   spawnInterval: 5
   spawnDistance: 30
 --- !u!1 &8806233373576301630

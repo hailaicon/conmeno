@@ -60,10 +60,16 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("vatcan"))
         {
             Debug.Log("Nhan vat da thua");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            
             NamSan.SetTrigger("Te");
             transform.Translate(Vector3.forward * 0 * Time.deltaTime);
+            Invoke("bruh", 1f);
             //_GameOverPanel.SetActive(true);
         }
+    }
+
+    public void bruh() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
