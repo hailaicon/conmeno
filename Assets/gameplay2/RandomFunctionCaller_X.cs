@@ -129,7 +129,6 @@ public class RandomFunctionCaller_X : MonoBehaviour
             }
         }
 
-
         if(mana_canh == 0)
         {
             HoiMana(mana_canh);
@@ -145,11 +144,6 @@ public class RandomFunctionCaller_X : MonoBehaviour
     {
         yield return new WaitForSeconds(21f);
         mana = mana + 1;
-
-
-        
-           
-
     }
 
     public void PlayerAction()
