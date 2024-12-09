@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class player : MonoBehaviour
     public GameObject really;
     public int speed = 5;
     public Animator NamSan;
+    public int diem = 0;
+    public Text text;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,28 +36,28 @@ public class player : MonoBehaviour
         }
 
         //nhấn phím để nhảy theo vertical và điều kiện jump bằng true.
-        if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jump)
-        {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.up * 6.5f,ForceMode.Impulse);
-        }
+        //if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jump)
+        //{
+        //    Rigidbody rb = GetComponent<Rigidbody>();
+        //    rb.AddForce(Vector3.up * 6.5f,ForceMode.Impulse);
+        //}
     }
 
-    //xét va chạm điều kiện jump giữa người chơi và mặt đất có tag tên là Ground.
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jump = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jump = false;
-        }
-    }
+    ////xét va chạm điều kiện jump giữa người chơi và mặt đất có tag tên là Ground.
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        jump = true;
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        jump = false;
+    //    }
+    //}
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("vatcan"))
@@ -65,6 +68,12 @@ public class player : MonoBehaviour
             transform.Translate(Vector3.forward * 0 * Time.deltaTime);
             Invoke("bruh", 1f);
             //_GameOverPanel.SetActive(true);
+        }
+        if (collision.gameObject.CompareTag("tien"))
+        {
+            diem += 1;
+            text.text = diem.ToString();
+            Destroy(collision.gameObject);
         }
     }
 

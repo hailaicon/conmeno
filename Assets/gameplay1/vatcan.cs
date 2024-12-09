@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
-
 
 public class ObstacleSpawner : MonoBehaviour
 {
@@ -19,6 +17,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         StartCoroutine(SpawnObstacles());
     }
+
     IEnumerator SpawnObstacles()
     {
         while (true)
@@ -31,10 +30,33 @@ public class ObstacleSpawner : MonoBehaviour
     public void SpawnObstacle()
     {
         float spawnZ = player.position.z + spawnDistance;
-        float spawnX = Random.Range(-4f, 4f);
+        float spawnX;
+        Vector3 spawnPosition;
+        bool isValidPosition;
+
+        // Lặp lại để tìm vị trí hợp lệ
+        do
+        {
+            spawnX = Random.Range(-4f, 4f); // Tạo vị trí X ngẫu nhiên
+            spawnPosition = new Vector3(spawnX, 0.5f, spawnZ);
+            isValidPosition = true;
+
+            // Kiểm tra khoảng cách với các vật cản đã spawn
+            foreach (GameObject obstacle in spawnedObstacles)
+            {
+                if (obstacle != null && Vector3.Distance(spawnPosition, obstacle.transform.position) < 2f)
+                {
+                    isValidPosition = false;
+                    break;
+                }
+            }
+        } while (!isValidPosition);
+
+        // Chọn Prefab vật cản ngẫu nhiên
         GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
-        GameObject spawnedObstacle = Instantiate(obstaclePrefab, new Vector3(spawnX, 0.5f, spawnZ), Quaternion.identity);
+        // Tạo vật cản tại vị trí đã chọn
+        GameObject spawnedObstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
 
         // Thêm vật cản vào danh sách quản lý
         spawnedObstacles.Add(spawnedObstacle);
@@ -46,13 +68,16 @@ public class ObstacleSpawner : MonoBehaviour
     // Coroutine để xóa vật cản sau thời gian sống
     IEnumerator DestroyObstacleAfterTime(GameObject obstacle)
     {
-        while (obstacle) {
-        // Đợi thời gian sống của vật cản
-        yield return new WaitForSeconds(7f);
+        if (obstacle != null)
+        {
+            // Đợi thời gian sống của vật cản
+            yield return new WaitForSeconds(7f);
 
-        // Xóa vật cản khỏi scene
-        Destroy(obstacle);
-}
+            // Xóa vật cản khỏi scene
+            Destroy(obstacle);
 
+            // Xóa vật cản khỏi danh sách quản lý
+            spawnedObstacles.Remove(obstacle);
+        }
     }
 }
