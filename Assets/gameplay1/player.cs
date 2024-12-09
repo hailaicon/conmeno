@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
     private bool jump;
+    public GameObject really;
+    public int speed = 5;
+    public Animator NamSan;
     // Start is called before the first frame update
     void Start()
     {
-
+         NamSan = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Destroy(really, 4f);
         //tiến về phía trước.
-        transform.Translate(Vector3.forward * 5f * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         //nhấn đẻ qua trái và qua phải theo horizontal.
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -28,26 +33,43 @@ public class player : MonoBehaviour
         }
 
         //nhấn phím để nhảy theo vertical và điều kiện jump bằng true.
-        if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jump)
+        //if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jump)
+        //{
+        //    Rigidbody rb = GetComponent<Rigidbody>();
+        //    rb.AddForce(Vector3.up * 6.5f,ForceMode.Impulse);
+        //}
+    }
+
+    ////xét va chạm điều kiện jump giữa người chơi và mặt đất có tag tên là Ground.
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        jump = true;
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        jump = false;
+    //    }
+    //}
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("vatcan"))
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.up * 5f,ForceMode.Impulse);
+            Debug.Log("Nhan vat da thua");
+            
+            NamSan.SetTrigger("Te");
+            transform.Translate(Vector3.forward * 0 * Time.deltaTime);
+            Invoke("bruh", 1f);
+            //_GameOverPanel.SetActive(true);
         }
     }
 
-    //xét va chạm điều kiện jump giữa người chơi và mặt đất có tag tên là Ground.
-    private void OnCollisionEnter(Collision collision)
+    public void bruh() 
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jump = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jump = false;
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
