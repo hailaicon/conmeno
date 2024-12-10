@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class player : MonoBehaviour
     public GameObject really;
     public int speed = 5;
     public Animator NamSan;
+    public int diem = 0;
+    public Text text;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +68,12 @@ public class player : MonoBehaviour
             transform.Translate(Vector3.forward * 0 * Time.deltaTime);
             Invoke("bruh", 1f);
             //_GameOverPanel.SetActive(true);
+        }
+        if (collision.gameObject.CompareTag("tien"))
+        {
+            diem += 1;
+            text.text = diem.ToString();
+            Destroy(collision.gameObject);
         }
     }
 
