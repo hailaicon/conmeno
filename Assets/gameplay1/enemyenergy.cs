@@ -25,8 +25,8 @@ public class enemyenergy : MonoBehaviour
     //chạy Ie để kiểm soát thời gian
     IEnumerator manathief()
     {
-        while(mana <= 100)
-        {   
+        while (mana <= 100)
+        {
             yield return new WaitForSeconds(0.5f);
             mana -= 1;
         }

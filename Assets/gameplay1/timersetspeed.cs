@@ -18,12 +18,12 @@ public class timersetspeed : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > 10f && timer < 50f && tang)
+        if (timer > 10f && timer < 50f && tang)
         {
             p1.speed += 2;
             tang = false;
         }
-        else if(timer > 50f && timer < 100f && !tang)
+        else if (timer > 50f && timer < 100f && !tang)
         {
             p1.speed += 6;
             tang = true;

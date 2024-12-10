@@ -46,13 +46,14 @@ public class ObstacleSpawner : MonoBehaviour
     // Coroutine để xóa vật cản sau thời gian sống
     IEnumerator DestroyObstacleAfterTime(GameObject obstacle)
     {
-        while (obstacle) {
-        // Đợi thời gian sống của vật cản
-        yield return new WaitForSeconds(7f);
+        while (obstacle)
+        {
+            // Đợi thời gian sống của vật cản
+            yield return new WaitForSeconds(7f);
 
-        // Xóa vật cản khỏi scene
-        Destroy(obstacle);
-}
+            // Xóa vật cản khỏi scene
+            Destroy(obstacle);
+        }
 
     }
 }

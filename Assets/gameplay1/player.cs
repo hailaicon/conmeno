@@ -12,7 +12,7 @@ public class player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         NamSan = GetComponent<Animator>();
+        NamSan = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -60,7 +60,7 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("vatcan"))
         {
             Debug.Log("Nhan vat da thua");
-            
+
             NamSan.SetTrigger("Te");
             transform.Translate(Vector3.forward * 0 * Time.deltaTime);
             Invoke("bruh", 1f);
@@ -68,7 +68,7 @@ public class player : MonoBehaviour
         }
     }
 
-    public void bruh() 
+    public void bruh()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
