@@ -20,7 +20,8 @@ public class enemyenergy : MonoBehaviour
     {
         manaslider.value = mana;
         //mana nhỏ hơn hoặc bằng thì chuyển scene khác.
-        if (mana <= 0) SceneManager.LoadScene("gameplay2");
+        if (mana <= 0) SceneManager.LoadScene("cutscene2");
+
     }
     //chạy Ie để kiểm soát thời gian
     IEnumerator manathief()
