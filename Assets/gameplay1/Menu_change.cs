@@ -21,7 +21,7 @@ public class Menu_change : MonoBehaviour
     {
         if (load >= 100)
         {
-            SceneManager.LoadScene("gameplay1");
+            SceneManager.LoadScene("Cut_scene1");
         }
     }
     public void play()
