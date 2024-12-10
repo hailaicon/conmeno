@@ -13,6 +13,10 @@ public class RandomFunctionCaller_X : MonoBehaviour
     // mau
     public Slider cuop_mau_sl;
     public Slider canh_mau_sl;
+    public Slider cuopManaSlider; // Slider mana của cướp
+    public Slider canhManaSlider; // Slider mana của cảnh sát
+    public Slider turnTimeSlider; // Slider thời gian lượt đánh
+
     public int mau_cuop;
     public int mau_canh;
     public int mana_cuop;
@@ -20,8 +24,8 @@ public class RandomFunctionCaller_X : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
-    public TMP_Text timerText;
-    public TMP_Text currentTurnText;
+    public Text timerText;
+    public Text currentTurnText;
 
     private float turnTime = 7f;
     private float timeLeft;
@@ -38,10 +42,13 @@ public class RandomFunctionCaller_X : MonoBehaviour
         timeLeft = turnTime;
         currentTurnText.text = "YOUR_TURN";
         hasActedThisTurn = false;
-        //mau_cuop = 3;
-        //mau_canh = 3;
-        //mana_cuop = 1;
-        //mana_canh = 10;
+
+        // Khởi tạo giá trị max cho sliders
+        cuop_mau_sl.maxValue = mau_cuop;
+        canh_mau_sl.maxValue = mau_canh;
+        cuopManaSlider.maxValue = mana_cuop;
+        canhManaSlider.maxValue = mana_canh;
+        turnTimeSlider.maxValue = 1; // Giá trị max của thanh thời gian là 1 (tỉ lệ)
     }
 
     public void CallAudio()
@@ -49,43 +56,36 @@ public class RandomFunctionCaller_X : MonoBehaviour
         atkSound.Play();
     }
 
-
-
     public void Function1()
     {
         CallAudio();
         cuopanim.SetTrigger("da");
-        
     }
 
     public void Function2()
     {
-        
         cuopanim.SetTrigger("dam");
         CallAudio();
     }
 
     public void Function3()
     {
-        
         cuopanim.SetTrigger("spin");
         CallAudio();
     }
 
     public void Function4()
     {
-        
         cuopanim.SetTrigger("hit");
     }
 
     public void Function5()
     {
-        
         cuopanim.SetTrigger("die");
     }
+
     public void Function6()
     {
-        
         cuopanim.SetTrigger("win");
     }
 
@@ -107,9 +107,9 @@ public class RandomFunctionCaller_X : MonoBehaviour
         yield return new WaitForSeconds(3f);
         canhanim.SetTrigger("win");
     }
+
     void Update()
     {
-        //Debug.Log(hasActedThisTurn);
         TurnBase();
 
         if (isPlayer1Turn)
@@ -118,6 +118,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             {
                 PlayerAction();
                 Debug.Log("mana canh: " + mana_canh);
+
             }
         }
         else
@@ -129,7 +130,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             }
         }
 
-        if(mana_canh == 0)
+        if (mana_canh == 0)
         {
             HoiMana(mana_canh);
         }
@@ -138,6 +139,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             HoiMana(mana_cuop);
         }
 
+        UpdateSliders(); // Cập nhật sliders mỗi frame
     }
 
     public IEnumerator HoiMana(int mana)
@@ -148,8 +150,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
 
     public void PlayerAction()
     {
-        //Debug.Log("goi player action");
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             CallAudio();
             canhanim.SetTrigger("kick");
@@ -176,38 +177,39 @@ public class RandomFunctionCaller_X : MonoBehaviour
             mana_canh = mana_canh - 1;
             hasActedThisTurn = true;
         }
-        //hasActedThisTurn = true;
     }
 
-    // goi cútcene
     public void TatTextGoiCutScene()
     {
         timerText.enabled = false;
         currentTurnText.enabled = false;
-    }    
+    }
+
     public void CuopMatMau()
     {
         mau_cuop = mau_cuop - 1;
-    }    
+    }
 
     public void TurnBase()
     {
         if (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-            timerText.text = "" + Mathf.RoundToInt(timeLeft);
+            timerText.text = Mathf.RoundToInt(timeLeft).ToString();
         }
         else
         {
-            // Hết thời gian, đổi lượt
             isPlayer1Turn = !isPlayer1Turn;
             timeLeft = turnTime;
-            currentTurnText.text = isPlayer1Turn ? "YOUR_TURN" : "ENEMY_TURN";
+            ChangeTurnText();
             hasActedThisTurn = false;
         }
+    }
 
-        //hasActedThisTurn = false;
-    }    
+    public void ChangeTurnText()
+    {
+        currentTurnText.text = isPlayer1Turn ? "Lượt Cảnh Sát" : "Lượt Cướp";
+    }
 
     public void RandomAttack()
     {
@@ -225,8 +227,6 @@ public class RandomFunctionCaller_X : MonoBehaviour
             case 1:
                 Function2();
                 canhanim.SetTrigger("hit");
-                canhanim.SetTrigger("hit");
-                canhanim.SetTrigger("hit");
                 mana_cuop = mana_cuop - 1;
                 hasActedThisTurn = true;
                 mau_canh = mau_canh - 1;
@@ -239,20 +239,14 @@ public class RandomFunctionCaller_X : MonoBehaviour
                 mana_cuop = mana_cuop - 3;
                 break;
         }
-
     }
 
-    /*public void deafeat()
+    void UpdateSliders()
     {
-        if (mau_canh == 0)
-        {
-            Debug.Log("bi danh bai");
-            SceneManager.LoadScene()
-        }
-        if (mau_cuop == 0)
-        {
-            Debug.Log("chien thang");
-            SceneManager.LoadScene(0);
-        }
-    }*/
+        cuop_mau_sl.value = mau_cuop;
+        canh_mau_sl.value = mau_canh;
+        cuopManaSlider.value = mana_cuop;
+        canhManaSlider.value = mana_canh;
+        turnTimeSlider.value = timeLeft / turnTime;
+    }
 }
