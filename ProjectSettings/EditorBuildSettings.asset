@@ -6,21 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/gameplay1/gameplay1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/gameplay2/gameplay2.unity
-    guid: f99514bac039a3640bcc7a38390269fd
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 6acf30015d211764095e07019c5d9744
-  - enabled: 1
-    path: Assets/Scenes/Setting.unity
-    guid: d1a7cb6bd1ec1dd49bdf187ef5c8ac62
+    path: Assets/gameplay1/Main.unity
+    guid: b0993b14bc4aac74aab9f47197615219
   - enabled: 1
     path: Assets/gameplay1/Cut_scene1.unity
     guid: 9ce85f7510f428e498baaeb4d8eed23e
   - enabled: 1
+    path: Assets/gameplay1/gameplay1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/gameplay1/cutscene2.unity
     guid: bec4e72b81e8deb4a843be6dbc80231b
+  - enabled: 1
+    path: Assets/gameplay2/gameplay2.unity
+    guid: f99514bac039a3640bcc7a38390269fd
+  - enabled: 1
+    path: Assets/endsceen/end.unity
+    guid: b3c7a5ad69c4a2641912149ac09e83ed
+  - enabled: 1
+    path: Assets/Scenes/Setting.unity
+    guid: d1a7cb6bd1ec1dd49bdf187ef5c8ac62
   m_configObjects: {}
