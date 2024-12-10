@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class timersetspeed : MonoBehaviour
 {
     public player p1;
     public float timer = 0f;
     public bool tang = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,7 @@ public class timersetspeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Invoke("cutscene1", 8.5f);
         timer += Time.deltaTime;
         if(timer > 10f && timer < 50f && tang)
         {
@@ -29,4 +32,8 @@ public class timersetspeed : MonoBehaviour
             tang = true;
         }
     }
+    /*public void cutscene1()
+    {
+        SceneManager.LoadScene("gameplay1");
+    }*/
 }
