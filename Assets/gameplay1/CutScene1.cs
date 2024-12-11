@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CutScene : MonoBehaviour
+public class CutScene1 : MonoBehaviour
 {
-    public float time = 8.5f;
+    public float time = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class CutScene : MonoBehaviour
         time -= Time.deltaTime;
         if(time <= 0)
         {
-            SceneManager.LoadScene("gameplay1");
+            SceneManager.LoadScene("gameplay2");
         }
     }
 

@@ -99,6 +99,7 @@ public class RandomFunctionCaller_X : MonoBehaviour
             TatTextGoiCutScene();
             StartCoroutine(Win());
             hasTriggeredWinCondition = true;
+            SceneManager.LoadScene("end");
         }
     }
 
